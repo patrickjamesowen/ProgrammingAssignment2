@@ -8,6 +8,7 @@
 makeCacheMatrix <- function(x = matrix()) {
   #initialising the inverse matrix as  null
   inverse <- NULL
+  
   #Set the value of the matrix
   set <- function(y) {
     x <<- y
@@ -40,12 +41,16 @@ cacheSolve <- function(x, ...) {
     message("getting cached data")
     return(inverse)
   }  
+  
   #there's an implicit else here - if we don't already have the invese of x we now get x...
   data <- x$get()
+  
   #...and calculate its inverse...
   inverse <- solve(data, ...)
+  
   #...and then caches it...
   x$set_inverse(inverse)
+  
   #...and finally returns it..
   inverse
   
